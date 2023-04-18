@@ -4,15 +4,33 @@
 
 package org.team1515.AJProject;
 
+import org.team1515.AJProject.Commands.Intake;
+import org.team1515.AJProject.Commands.Outtake;
+import org.team1515.AJProject.Subsystems.Claw;
+
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
 public class RobotContainer {
+
+  public Claw claw;
+  public static XboxController controller;
+
   public RobotContainer() {
+
+    claw = new Claw();
+    controller = new XboxController(0);
+
     configureBindings();
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+
+    Controls.INTAKE.whileTrue(new Intake(claw));
+    Controls.OUTTAKE.whileTrue(new Outtake(claw));
+
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
