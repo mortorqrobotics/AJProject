@@ -13,7 +13,7 @@
     "drive": 0.25,
     "angle": 0.25
   },
-  "angleMotorsKV": 0,
+  "angleMotorsKV": 0.1,
   "encoderPulsePerRotation": {
     "drive": 1,
     "angle": 1
