@@ -50,7 +50,7 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(controller.getLeftX(), 0.01),
       () -> controller.getRawAxis(2), false);
 
-      drivebase.setDefaultCommand(!RobotBase.isSimulation() ? closedFieldAbsoluteDrive : closedFieldAbsoluteDrive);
+    drivebase.setDefaultCommand(!RobotBase.isSimulation() ? closedFieldAbsoluteDrive : closedFieldAbsoluteDrive);
 
   }
 
