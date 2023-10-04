@@ -1,9 +1,5 @@
 package com.team3841.SwerveLib.swervelib;
 
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.team3841.SwerveLib.swervelib.encoders.SwerveAbsoluteEncoder;
 import com.team3841.SwerveLib.swervelib.math.SwerveMath;
 import com.team3841.SwerveLib.swervelib.math.SwerveModuleState2;
@@ -12,6 +8,11 @@ import com.team3841.SwerveLib.swervelib.parser.SwerveModuleConfiguration;
 import com.team3841.SwerveLib.swervelib.simulation.SwerveModuleSimulation;
 import com.team3841.SwerveLib.swervelib.telemetry.SwerveDriveTelemetry;
 import com.team3841.SwerveLib.swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
+
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The Swerve Module class which represents and controls Swerve Modules for the swerve drive.
@@ -181,6 +182,7 @@ public class SwerveModule
     if (desiredState.angle != lastState.angle || synchronizeEncoderQueued)
     {
       double moduleFF = desiredState.omegaRadPerSecond * configuration.moduleSteerFFCL;
+      //System.out.println(moduleFF);
       // Synchronize encoders if queued and send in the current position as the value from the absolute encoder.
       if (absoluteEncoder != null && synchronizeEncoderQueued)
       {

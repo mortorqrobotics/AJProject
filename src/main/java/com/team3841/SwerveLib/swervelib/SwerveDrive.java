@@ -24,6 +24,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.team3841.SwerveLib.swervelib.imu.NavXSwerve;
 import com.team3841.SwerveLib.swervelib.imu.SwerveIMU;
 import com.team3841.SwerveLib.swervelib.math.SwerveKinematics2;
 import com.team3841.SwerveLib.swervelib.math.SwerveMath;
@@ -83,11 +85,11 @@ public class SwerveDrive
    * Correct chassis velocity in {@link SwerveDrive#drive(Translation2d, double, boolean, boolean)} using 254's
    * correction.
    */
-  public  boolean             chassisVelocityCorrection    = true;
+  public  boolean             chassisVelocityCorrection    = false;
   /**
    * Swerve IMU device for sensing the heading of the robot.
    */
-  private SwerveIMU           imu;
+  private NavXSwerve           imu;
   /**
    * Simulation of the swerve drive.
    */

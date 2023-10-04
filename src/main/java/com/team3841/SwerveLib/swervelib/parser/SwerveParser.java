@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import com.team3841.SwerveLib.swervelib.SwerveDrive;
 import com.team3841.SwerveLib.swervelib.SwerveModule;
+import com.team3841.SwerveLib.swervelib.imu.NavXSwerve;
 import com.team3841.SwerveLib.swervelib.parser.json.ControllerPropertiesJson;
 import com.team3841.SwerveLib.swervelib.parser.json.ModuleJson;
 import com.team3841.SwerveLib.swervelib.parser.json.PIDFPropertiesJson;
@@ -148,7 +149,7 @@ public class SwerveParser
     SwerveDriveConfiguration swerveDriveConfiguration =
         new SwerveDriveConfiguration(
             moduleConfigurations,
-            swerveDriveJson.imu.createIMU(),
+            (NavXSwerve) swerveDriveJson.imu.createIMU(),
             maxSpeedMPS,
             swerveDriveJson.invertedIMU);
 

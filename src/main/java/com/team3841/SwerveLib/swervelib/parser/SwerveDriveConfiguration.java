@@ -2,6 +2,7 @@ package com.team3841.SwerveLib.swervelib.parser;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import com.team3841.SwerveLib.swervelib.SwerveModule;
+import com.team3841.SwerveLib.swervelib.imu.NavXSwerve;
 import com.team3841.SwerveLib.swervelib.imu.SwerveIMU;
 
 /**
@@ -17,7 +18,7 @@ public class SwerveDriveConfiguration
   /**
    * Swerve IMU
    */
-  public SwerveIMU       imu;
+  public NavXSwerve       imu;
   /**
    * Invert the imu measurements.
    */
@@ -46,7 +47,7 @@ public class SwerveDriveConfiguration
    */
   public SwerveDriveConfiguration(
       SwerveModuleConfiguration[] moduleConfigs,
-      SwerveIMU swerveIMU,
+      NavXSwerve swerveIMU,
       double maxSpeed,
       boolean invertedIMU)
   {

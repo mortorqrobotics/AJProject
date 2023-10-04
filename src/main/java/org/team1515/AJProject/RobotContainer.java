@@ -45,10 +45,10 @@ public class RobotContainer {
       false);
 
     AbsoluteFieldDrive closedFieldAbsoluteDrive = new AbsoluteFieldDrive(drivebase,
-      () ->
-          MathUtil.applyDeadband(controller.getLeftY(), 0.01),
-      () -> MathUtil.applyDeadband(controller.getLeftX(), 0.01),
-      () -> controller.getRawAxis(2), false);
+      () -> MathUtil.applyDeadband(controller.getLeftY(), 0.1),
+      () -> MathUtil.applyDeadband(controller.getLeftX(), 0.1),
+      () -> controller.getRawAxis(4)
+      , false);
 
     drivebase.setDefaultCommand(!RobotBase.isSimulation() ? closedFieldAbsoluteDrive : closedFieldAbsoluteDrive);
 

@@ -4,18 +4,18 @@
 
 package org.team1515.AJProject.Commands;
 
+import java.util.function.DoubleSupplier;
+
+import org.team1515.AJProject.Subsystems.Drivetrain;
+
+import com.team3841.SwerveLib.swervelib.SwerveController;
+import com.team3841.SwerveLib.swervelib.SwerveDrive;
+import com.team3841.SwerveLib.swervelib.telemetry.SwerveDriveTelemetry;
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import org.team1515.AJProject.RobotMap;
-import org.team1515.AJProject.Subsystems.Drivetrain;
-import java.util.List;
-import java.util.function.DoubleSupplier;
-import com.team3841.SwerveLib.swervelib.SwerveController;
-import com.team3841.SwerveLib.swervelib.math.SwerveMath;
 
 /**
  * An example command that uses an example subsystem.
@@ -65,20 +65,21 @@ public class AbsoluteFieldDrive extends CommandBase
   {
 
     // Get the desired chassis speeds based on a 2 joystick module.
-
+    System.out.println("Vx: " + vX.getAsDouble() + " Vy: " + vY.getAsDouble() + " Heading: " + heading.getAsDouble() * Math.PI);
     ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX.getAsDouble(), vY.getAsDouble(),
                                                          new Rotation2d(heading.getAsDouble() * Math.PI));
 
     // Limit velocity to prevent tippy
-    Translation2d translation = SwerveController.getTranslation2d(desiredSpeeds);
-    translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(),
-                                           RobotMap.LOOP_TIME, RobotMap.ROBOT_MASS, List.of(RobotMap.CHASSIS),
-                                           swerve.getSwerveDriveConfiguration());
-    SmartDashboard.putNumber("LimitedTranslation", translation.getX());
-    SmartDashboard.putString("Translation", translation.toString());
+    // Translation2d translation = SwerveController.getTranslation2d(desiredSpeeds);
+    // translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(),
+    //                                        RobotMap.LOOP_TIME, RobotMap.ROBOT_MASS, List.of(RobotMap.CHASSIS),
+    //                                        swerve.getSwerveDriveConfiguration());
+    // SmartDashboard.putNumber("LimitedTranslation", translation.getX());
+    // SmartDashboard.putString("Translation", translation.toString());
 
     // Make the robot move
-    swerve.drive(translation, desiredSpeeds.omegaRadiansPerSecond, true, isOpenLoop);
+    System.out.println(heading.getAsDouble() * Math.PI * SwerveDriveTelemetry.maxAngularVelocity);
+    swerve.drive(new Translation2d(vX.getAsDouble(), vY.getAsDouble()), 1, true, isOpenLoop);
 
   }
 
